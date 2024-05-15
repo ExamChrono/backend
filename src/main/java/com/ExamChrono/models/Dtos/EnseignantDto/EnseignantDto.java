@@ -1,7 +1,15 @@
 package com.ExamChrono.models.Dtos.EnseignantDto;
 
-import com.ExamChrono.models.Entities.Filiere;
+import com.ExamChrono.models.Enums.RoleUser;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class EnseignantDto {
     private Long id;
     private String email;
@@ -15,4 +23,5 @@ public class EnseignantDto {
     private boolean priorite;
     private String password;
     private Boolean validation;
+    private RoleUser roleUser;
 }

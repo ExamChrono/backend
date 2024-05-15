@@ -5,6 +5,7 @@ import com.ExamChrono.models.Dtos.FiliereEtudiantDto.FiliereEtudiantDto;
 import com.ExamChrono.models.Dtos.FiliereWithStudentsDto.FiliereWithStudentsDto;
 import com.ExamChrono.models.Entities.Etudiant;
 import com.ExamChrono.models.Entities.Filiere;
+import com.ExamChrono.models.Enums.RoleUser;
 import com.ExamChrono.repositories.EtudiantRepository;
 import com.ExamChrono.repositories.FiliereRepository;
 import com.ExamChrono.services.interfaces.FiliereEtudiantService;
@@ -31,7 +32,7 @@ public class FiliereEtudiantServiceImpl implements FiliereEtudiantService {
         for (Filiere filiere : filieres) {
             List<EtudiantDto> studentDtos = new ArrayList<>();
             for (Etudiant etudiant : filiere.getEtudiants()) {
-                studentDtos.add(new EtudiantDto(etudiant.getIdEtudiant(), etudiant.getMatricule(), etudiant.getEmail(), etudiant.getNom(), etudiant.getPrenom(), etudiant.getPassword(), etudiant.getValidation()));
+                studentDtos.add(new EtudiantDto(etudiant.getIdEtudiant(), etudiant.getMatricule(), etudiant.getEmail(), etudiant.getNom(), etudiant.getPrenom(), etudiant.getPassword(), etudiant.getValidation(), RoleUser.Etudiant));
             }
             dtos.add(new FiliereWithStudentsDto(filiere.getId(), filiere.getNom(), filiere.getSpecialite(),
                     filiere.getNiveau(), filiere.getNombreEtudient(), studentDtos));

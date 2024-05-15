@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface EtudiantService {
     List<EtudiantDto> getAllEtudiants();
-    boolean loginEtudiant(Etudiant etudiant);
+    EtudiantDto loginEtudiant(Etudiant etudiant);
     boolean updateEtudiant(Etudiant etudiant);
     boolean createEtudiant(Etudiant etudiant, boolean validation);
     boolean deleteEtudiant(Etudiant etudiant);
+
+    EtudiantDto getEtudiantByEmail(Etudiant etudiant);
 }

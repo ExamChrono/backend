@@ -1,5 +1,6 @@
 package com.ExamChrono.models.Entities;
 
+import com.ExamChrono.models.Enums.RoleUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,8 @@ public class Etudiant {
     private String prenom;
     private String password;
     private Boolean validation;
+    @Enumerated(EnumType.STRING)
+    private RoleUser roleUser;
 
     @ManyToMany
     @JoinTable(name = "filiere_etudiant", joinColumns = @JoinColumn(name = "etudiant_id"), inverseJoinColumns = @JoinColumn(name = "filiere_id")    )

@@ -1,5 +1,6 @@
 package com.ExamChrono.controllers;
 
+import com.ExamChrono.models.Dtos.EnseignantDto.EnseignantDto;
 import com.ExamChrono.models.Entities.Enseignant;
 import com.ExamChrono.services.interfaces.EnseignantService;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class EnseignantController {
         return enseignantService.getAllEnseignants();
     }
     @PostMapping("/login")
-    public boolean loginEnseignant(@RequestBody Enseignant enseignant) {
+    public EnseignantDto loginEnseignant(@RequestBody Enseignant enseignant) {
         return enseignantService.loginEnseignant(enseignant);
     }
     @PutMapping("/update")
@@ -38,5 +39,9 @@ public class EnseignantController {
     @DeleteMapping("/delete")
     public boolean deleteEnseignant(@RequestBody Enseignant enseignant) {
         return enseignantService.deleteEnseignant(enseignant);
+    }
+    @PostMapping("/getByEmail")
+    public EnseignantDto getEnseignantByEmail(@RequestBody Enseignant enseignant) {
+        return enseignantService.getEnseignantByEmail(enseignant);
     }
 }

@@ -20,8 +20,12 @@ public class AdminController {
     @GetMapping("/get")
     public Admin getAdmin() { return this.adminService.getAdmin();}
     @PostMapping("/login")
-    public boolean loginAdmin(@RequestBody Admin admin) {
+    public Admin loginAdmin(@RequestBody Admin admin) {
         return this.adminService.loginAdmin(admin);
+    }
+    @PostMapping("/getByEmail")
+    public Admin getAdminByEmail(@RequestBody Admin admin) {
+        return this.adminService.getAdminByEmail(admin);
     }
     @PutMapping("/update")
     public boolean updateAdmin(@RequestBody Admin admin) {

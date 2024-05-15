@@ -1,13 +1,17 @@
 package com.ExamChrono.models.Dtos.DelegueDto;
 
 import com.ExamChrono.models.Dtos.EtudiantDto.EtudiantDto;
-import com.ExamChrono.models.Entities.Etudiant;
-import com.ExamChrono.models.Entities.Filiere;
+import com.ExamChrono.models.Enums.RoleUser;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.List;
-
+@Getter
+@Setter
+@AllArgsConstructor
 public class DelegueDto{
     private Long id;
 
-    private List<Etudiant> etudiants;
+    private EtudiantDto etudiant;
+    private RoleUser roleUser;
 }

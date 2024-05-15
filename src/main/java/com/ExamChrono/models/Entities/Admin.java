@@ -1,5 +1,6 @@
 package com.ExamChrono.models.Entities;
 
+import com.ExamChrono.models.Enums.RoleUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,4 +18,6 @@ public class Admin {
     private String nom;
     private String prenom;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private RoleUser roleUser;
 }

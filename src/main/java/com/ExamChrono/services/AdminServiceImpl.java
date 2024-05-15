@@ -14,8 +14,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public boolean loginAdmin(Admin admin) {
-        return this.adminRepository.existsByEmailAndPassword(admin.getEmail(), admin.getPassword());
+    public Admin loginAdmin(Admin admin) {
+        if (this.adminRepository.existsByEmailAndPassword(admin.getEmail(), admin.getPassword())) {
+            return this.getAdmin();
+        }
+        return new Admin();
     }
 
     @Override
@@ -27,5 +30,13 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin getAdmin() {
         return this.adminRepository.findAll().getFirst();
+    }
+
+    @Override
+    public Admin getAdminByEmail(Admin admin) {
+        if (this.adminRepository.existsByEmail(admin.getEmail())) {
+            return this.adminRepository.findByEmail(admin.getEmail());
+        }
+        return new Admin();
     }
 }

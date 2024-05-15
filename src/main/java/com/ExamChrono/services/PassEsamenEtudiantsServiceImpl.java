@@ -5,6 +5,7 @@ import com.ExamChrono.models.Dtos.PassEsamenDto.PassEsamenDto;
 import com.ExamChrono.models.Dtos.PassEsamenEtudiantsDto.PassEsamenEtudiantsDto;
 import com.ExamChrono.models.Entities.Etudiant;
 import com.ExamChrono.models.Entities.PassEsamenEtudiant;
+import com.ExamChrono.models.Enums.RoleUser;
 import com.ExamChrono.repositories.EtudiantRepository;
 import com.ExamChrono.repositories.ModulesRepository;
 import com.ExamChrono.repositories.PassEsamenEtudiantsRepository;
@@ -44,7 +45,7 @@ public class PassEsamenEtudiantsServiceImpl implements PassEsamenEtudiantsServic
                 for (PassEsamenEtudiant etudiantInPassEsamen : etudiantsInPassEsamen) {
                     Long etudiantId = etudiantInPassEsamen.getEtudiantsId();
                     Etudiant etudiant = this.etudiantRepository.findById(etudiantId).get();
-                    EtudiantDto etudiantDto = new EtudiantDto(etudiant.getIdEtudiant(), etudiant.getMatricule(), etudiant.getEmail(), etudiant.getNom(), etudiant.getPrenom(), etudiant.getPassword(), etudiant.getValidation());
+                    EtudiantDto etudiantDto = new EtudiantDto(etudiant.getIdEtudiant(), etudiant.getMatricule(), etudiant.getEmail(), etudiant.getNom(), etudiant.getPrenom(), etudiant.getPassword(), etudiant.getValidation(), RoleUser.Etudiant);
                     etudiantsDtos.add(etudiantDto);
                 }
                 passEsamenEtudiantsDtos.add(new PassEsamenEtudiantsDto(passEsamenDto, etudiantsDtos));

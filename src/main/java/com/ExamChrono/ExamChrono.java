@@ -1,6 +1,7 @@
 package com.ExamChrono;
 
 import com.ExamChrono.models.Entities.Admin;
+import com.ExamChrono.models.Enums.RoleUser;
 import com.ExamChrono.repositories.AdminRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,7 @@ public class ExamChrono {
             admin.setPassword("admin");
             admin.setNom("Rachid");
             admin.setPrenom("Loubna");
+            admin.setRoleUser(RoleUser.Admin);
             adminRepository.save(admin);
         };
     }

@@ -25,7 +25,7 @@ public class EtudiantController {
         return etudiantService.getAllEtudiants();
     }
     @PostMapping("/login")
-    public boolean loginEtudiant(@RequestBody Etudiant etudiant) {
+    public EtudiantDto loginEtudiant(@RequestBody Etudiant etudiant) {
         return etudiantService.loginEtudiant(etudiant);
     }
     @PutMapping("/update")
@@ -39,5 +39,9 @@ public class EtudiantController {
     @DeleteMapping("/delete")
     public boolean deleteEtudiant(@RequestBody Etudiant etudiant) {
         return etudiantService.deleteEtudiant(etudiant);
+    }
+    @PostMapping("/getByEmail")
+    public EtudiantDto getEtudiantByEmail(@RequestBody Etudiant etudiant) {
+        return etudiantService.getEtudiantByEmail(etudiant);
     }
 }

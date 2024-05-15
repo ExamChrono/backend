@@ -1,5 +1,7 @@
 package com.ExamChrono.controllers;
 
+import com.ExamChrono.models.Dtos.DelegueDto.DelegueDto;
+import com.ExamChrono.models.Dtos.EtudiantDto.EtudiantDto;
 import com.ExamChrono.models.Entities.Delegue;
 import com.ExamChrono.models.Entities.Etudiant;
 import com.ExamChrono.services.interfaces.DelegueService;
@@ -20,12 +22,16 @@ public class DelegueController {
         this.delegueService = delegueService;
     }
     @GetMapping("/all")
-    public List<Delegue> getAllDelegues() {
+    public List<DelegueDto> getAllDelegues() {
         return delegueService.getAllDelegues();
     }
     @PostMapping("/login")
-    public boolean loginDelegue(@RequestBody Etudiant etudiant) {
+    public EtudiantDto loginDelegue(@RequestBody Etudiant etudiant) {
         return delegueService.loginDelegue(etudiant);
+    }
+    @PostMapping("/getByEmail")
+    public EtudiantDto getDelegueByEmail(@RequestBody Delegue delegue) {
+        return delegueService.getDelegueByEmail(delegue);
     }
     @PostMapping("/create")
     public boolean createDelegue(@RequestBody Delegue delegue) {
