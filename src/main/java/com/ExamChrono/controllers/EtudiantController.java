@@ -41,7 +41,7 @@ public class EtudiantController {
         return etudiantService.deleteEtudiant(etudiant);
     }
     @PostMapping("/getByEmail")
-    public EtudiantDto getEtudiantByEmail(@RequestBody Etudiant etudiant) {
+    public EtudiantDto r(@RequestBody Etudiant etudiant) {
         return etudiantService.getEtudiantByEmail(etudiant);
     }
 }
