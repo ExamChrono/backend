@@ -1,4 +1,4 @@
-package com.ExamChrono.models.Dtos.PassEsamenDto;
+package com.ExamChrono.models.Dtos.PassExamenDto;
 
 import com.ExamChrono.models.Dtos.ModulesDto.Modules2Dto;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PassEsamenDto {
+public class PassExamenDto {
     private Long id;
     private String date;
 

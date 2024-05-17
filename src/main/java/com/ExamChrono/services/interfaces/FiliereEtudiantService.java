@@ -8,5 +8,5 @@ import java.util.List;
 public interface FiliereEtudiantService {
     List<FiliereWithStudentsDto> getAllFiliereEtudiant();
     boolean addEtudiantToFiliere(FiliereEtudiantDto filiereEtudiantDto);
-    boolean deleteEtudiantFromFiliere(FiliereEtudiantDto filiereEtudiantDto);
+    boolean deleteEtudiantFromFiliere(Long filiereId,Long etudiantId);
 }

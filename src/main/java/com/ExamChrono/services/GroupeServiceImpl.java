@@ -3,7 +3,6 @@ package com.ExamChrono.services;
 import com.ExamChrono.models.Dtos.FiliereWithGroupesDto.FiliereWithGroupesDto;
 import com.ExamChrono.models.Dtos.GroupeDto.Groupe2Dto;
 import com.ExamChrono.models.Dtos.GroupeDto.GroupeDto;
-import com.ExamChrono.models.Dtos.GroupeFiliereDto.GroupeFiliereDto;
 import com.ExamChrono.models.Entities.Filiere;
 import com.ExamChrono.models.Entities.Groupe;
 import com.ExamChrono.repositories.FiliereRepository;
@@ -67,10 +66,7 @@ public class GroupeServiceImpl implements GroupeService {
     }
 
     @Override
-    public boolean deleteGroupe(GroupeFiliereDto groupeFiliereDto) {
-        long filiereId = groupeFiliereDto.getFiliereId();
-        long groupeId = groupeFiliereDto.getGroupeId();
-
+    public boolean deleteGroupe(Long filiereId, Long groupeId) {
         Filiere filiere = this.filiereRepository.findById(filiereId).get();
         Groupe groupe = this.groupeRepository.findById(groupeId).get();
 

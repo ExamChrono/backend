@@ -3,7 +3,6 @@ package com.ExamChrono.controllers;
 import com.ExamChrono.models.Dtos.FiliereWithGroupesDto.FiliereWithGroupesDto;
 import com.ExamChrono.models.Dtos.GroupeDto.Groupe2Dto;
 import com.ExamChrono.models.Dtos.GroupeDto.GroupeDto;
-import com.ExamChrono.models.Dtos.GroupeFiliereDto.GroupeFiliereDto;
 import com.ExamChrono.services.interfaces.GroupeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +36,8 @@ public class GroupeController {
         return groupeService.updateGroupe(groupeDto);
     }
 
-    @DeleteMapping("/delete")
-    public boolean deleteGroupe(@RequestBody GroupeFiliereDto groupeFiliereDto) {
-        return groupeService.deleteGroupe(groupeFiliereDto);
+    @DeleteMapping("/delete/{filiereId}/{groupeId}")
+    public boolean deleteGroupe(@PathVariable Long filiereId, @PathVariable Long groupeId) {
+        return groupeService.deleteGroupe(filiereId, groupeId);
     }
 }

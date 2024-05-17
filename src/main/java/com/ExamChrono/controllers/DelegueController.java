@@ -37,8 +37,8 @@ public class DelegueController {
     public boolean createDelegue(@RequestBody Delegue delegue) {
         return delegueService.createDelegue(delegue);
     }
-    @DeleteMapping("/delete")
-    public boolean deleteDelegue(@RequestBody Delegue delegue) {
-        return delegueService.deleteDelegue(delegue);
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteDelegue(@PathVariable Long id) {
+        return delegueService.deleteDelegue(id);
     }
 }

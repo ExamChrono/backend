@@ -46,8 +46,8 @@ public class EnseignantServiceImpl implements EnseignantService {
     }
 
     @Override
-    public boolean deleteEnseignant(Enseignant enseignant) {
-        this.enseignantRepository.delete(enseignant);
+    public boolean deleteEnseignant(Long id) {
+        this.enseignantRepository.deleteById(id);
         return true;
     }
 

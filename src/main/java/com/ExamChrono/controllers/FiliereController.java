@@ -35,8 +35,8 @@ public class FiliereController {
         return filiereService.updateFiliere(filiere);
     }
 
-    @DeleteMapping("/delete")
-    public boolean deleteFiliere(@RequestBody Filiere filiere) {
-        return filiereService.deleteFiliere(filiere);
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteFiliere(@PathVariable Long id) {
+        return filiereService.deleteFiliere(id);
     }
 }

@@ -36,8 +36,8 @@ public class ModulesController {
         return modulesService.updateModule(modulesDto);
     }
 
-    @DeleteMapping("/delete")
-    public boolean deleteModule(@RequestBody ModulesFilieredto modulesFilieredto) {
-        return modulesService.deleteModule(modulesFilieredto);
+    @DeleteMapping("/delete/{filiereId}/{moduleId}")
+    public boolean deleteModule(@PathVariable Long filiereId, @PathVariable Long moduleId) {
+        return modulesService.deleteModule(filiereId, moduleId);
     }
 }

@@ -1,6 +1,6 @@
 package com.ExamChrono.models.Dtos.SalleDto;
 
-import com.ExamChrono.models.Dtos.PassEsamenDto.PassEsamenDto;
+import com.ExamChrono.models.Dtos.PassExamenDto.PassExamenDto;
 import com.ExamChrono.models.Dtos.SurveilleDto.SurveilleDto;
 import com.ExamChrono.models.Enums.TypeSalle;
 import lombok.Getter;
@@ -14,6 +14,6 @@ public class SalleDto {
     private TypeSalle type_salle;
     private Long capacite;
 
-    private PassEsamenDto passEsamen;
+    private PassExamenDto passEsamen;
     private SurveilleDto surveille;
 }

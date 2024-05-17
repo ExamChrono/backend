@@ -9,5 +9,5 @@ public interface SurveilleService {
     List<SurveilleDto> getAllSurveille();
     boolean addSurveille(Surveille surveille);
     boolean updateSurveille(Surveille surveille);
-    boolean deleteSurveille(Surveille surveille);
+    boolean deleteSurveille(Long id);
 }

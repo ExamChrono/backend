@@ -11,7 +11,7 @@ public interface DelegueService {
     List<DelegueDto> getAllDelegues();
     EtudiantDto loginDelegue(Etudiant etudiant);
     boolean createDelegue(Delegue delegue);
-    boolean deleteDelegue(Delegue delegue);
+    boolean deleteDelegue(Long id);
 
     EtudiantDto getDelegueByEmail(Delegue delegue);
 }

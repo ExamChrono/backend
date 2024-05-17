@@ -9,5 +9,5 @@ public interface SalleService {
     List<SalleDto> getAllSalles();
     boolean addSalle(Salle salle);
     boolean updateSalle(Salle salle);
-    boolean deleteSalle(Salle salle);
+    boolean deleteSalle(Long id);
 }

@@ -59,8 +59,8 @@ public class DelegueServiceImpl implements DelegueService {
     }
 
     @Override
-    public boolean deleteDelegue(Delegue delegue) {
-        this.delegueRepository.delete(delegue);
+    public boolean deleteDelegue(Long id) {
+        this.delegueRepository.deleteById(id);
         return true;
     }
 

@@ -3,7 +3,7 @@ package com.ExamChrono.services;
 import com.ExamChrono.models.Dtos.FiliereDto.FiliereDto;
 import com.ExamChrono.models.Dtos.GroupeDto.Groupe3Dto;
 import com.ExamChrono.models.Dtos.ModulesDto.Modules2Dto;
-import com.ExamChrono.models.Dtos.PassEsamenDto.PassEsamenDto;
+import com.ExamChrono.models.Dtos.PassExamenDto.PassExamenDto;
 import com.ExamChrono.models.Dtos.SalleDto.SalleDto;
 import com.ExamChrono.models.Dtos.SurveilleDto.SurveilleDto;
 import com.ExamChrono.models.Entities.*;
@@ -23,15 +23,15 @@ public class SalleServiceImpl implements SalleService {
     private final SurveilleRepository surveilleRepository;
     private final GroupeRepository groupeRepository;
     private final EnseignantRepository enseignantRepository;
-    private final PassEsamenRepository passEsamenRepository;
+    private final PassExamenRepository passExamenRepository;
     private final ModulesRepository modulesRepository;
 
-    public SalleServiceImpl(SalleRepository salleRepository, SurveilleRepository surveilleRepository, GroupeRepository groupeRepository, EnseignantRepository enseignantRepository, PassEsamenRepository passEsamenRepository, ModulesRepository modulesRepository) {
+    public SalleServiceImpl(SalleRepository salleRepository, SurveilleRepository surveilleRepository, GroupeRepository groupeRepository, EnseignantRepository enseignantRepository, PassExamenRepository passExamenRepository, ModulesRepository modulesRepository) {
         this.salleRepository = salleRepository;
         this.surveilleRepository = surveilleRepository;
         this.groupeRepository = groupeRepository;
         this.enseignantRepository = enseignantRepository;
-        this.passEsamenRepository = passEsamenRepository;
+        this.passExamenRepository = passExamenRepository;
         this.modulesRepository = modulesRepository;
     }
 
@@ -64,15 +64,15 @@ public class SalleServiceImpl implements SalleService {
             surveilleDto.setEnseignant(enseignant);
 
             Long passEsamenId = salle.getPassEsamenId();
-            PassEsamen passEsamen = this.passEsamenRepository.findById(passEsamenId).orElse(null);
+            PassExamen passExamen = this.passExamenRepository.findById(passEsamenId).orElse(null);
 
-            Long moduleId = passEsamen.getModuleId();
+            Long moduleId = passExamen.getModuleId();
             Modules module = this.modulesRepository.findById(moduleId).get();
             Modules2Dto moduleDto = new Modules2Dto(module.getId(), module.getNom(), module.getSemester(), module.getOrder());
 
-            String desiredFormat = getString(passEsamen.getDate());
+            String desiredFormat = getString(passExamen.getDate());
 
-            PassEsamenDto passEsamenDto = new PassEsamenDto(passEsamen.getId(), desiredFormat, moduleDto);
+            PassExamenDto passExamenDto = new PassExamenDto(passExamen.getId(), desiredFormat, moduleDto);
 
             SalleDto salleDto = new SalleDto();
             salleDto.setId(salle.getId());
@@ -80,7 +80,7 @@ public class SalleServiceImpl implements SalleService {
             salleDto.setType_salle(salle.getType_salle());
             salleDto.setCapacite(salle.getCapacite());
             salleDto.setSurveille(surveilleDto);
-            salleDto.setPassEsamen(passEsamenDto);
+            salleDto.setPassEsamen(passExamenDto);
 
             salleDtos.add(salleDto);
         }
@@ -101,8 +101,8 @@ public class SalleServiceImpl implements SalleService {
     }
 
     @Override
-    public boolean deleteSalle(Salle salle) {
-        this.salleRepository.delete(salle);
+    public boolean deleteSalle(Long id) {
+        this.salleRepository.deleteById(id);
         return true;
     }
 }

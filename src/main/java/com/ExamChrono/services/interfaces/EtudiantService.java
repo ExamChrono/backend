@@ -10,7 +10,7 @@ public interface EtudiantService {
     EtudiantDto loginEtudiant(Etudiant etudiant);
     boolean updateEtudiant(Etudiant etudiant);
     boolean createEtudiant(Etudiant etudiant, boolean validation);
-    boolean deleteEtudiant(Etudiant etudiant);
+    boolean deleteEtudiant(Long id);
 
     EtudiantDto getEtudiantByEmail(Etudiant etudiant);
 }

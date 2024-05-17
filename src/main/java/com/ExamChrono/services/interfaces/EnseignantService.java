@@ -10,7 +10,7 @@ public interface EnseignantService {
     EnseignantDto loginEnseignant(Enseignant enseignant);
     boolean updateEnseignant(Enseignant enseignant);
     boolean createEnseignant(Enseignant enseignant, boolean validation);
-    boolean deleteEnseignant(Enseignant enseignant);
+    boolean deleteEnseignant(Long id);
 
     EnseignantDto getEnseignantByEmail(Enseignant enseignant);
 }

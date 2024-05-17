@@ -60,9 +60,7 @@ public class FiliereEtudiantServiceImpl implements FiliereEtudiantService {
     }
 
     @Override
-    public boolean deleteEtudiantFromFiliere(FiliereEtudiantDto filiereEtudiantDto) {
-        Long filiereId = filiereEtudiantDto.getFiliereId();
-        Long etudiantId = filiereEtudiantDto.getEtudiantId();
+    public boolean deleteEtudiantFromFiliere(Long filiereId, Long etudiantId) {
 
         Filiere filiere = filiereRepository.findById(filiereId).get();
         Etudiant etudiant = etudiantRepository.findById(etudiantId).get();

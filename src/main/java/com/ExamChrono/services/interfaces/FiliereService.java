@@ -9,5 +9,6 @@ public interface FiliereService {
     List<FiliereDto> getAllFilieres();
     boolean updateFiliere(Filiere filiere);
     boolean createFiliere(Filiere filiere);
-    boolean deleteFiliere(Filiere filiere);
+    boolean deleteFiliere(Long id
+    );
 }

@@ -83,8 +83,8 @@ public class SurveilleServiceImpl implements SurveilleService {
     }
 
     @Override
-    public boolean deleteSurveille(Surveille surveille) {
-        this.surveilleRepository.delete(surveille);
+    public boolean deleteSurveille(Long id) {
+        this.surveilleRepository.deleteById(id);
         return true;
     }
 }

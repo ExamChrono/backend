@@ -29,8 +29,8 @@ public class FiliereEtudiantController {
     public boolean addEtudiantToFiliere(@RequestBody FiliereEtudiantDto filiereEtudiantDto) {
         return filiereEtudiantService.addEtudiantToFiliere(filiereEtudiantDto);
     }
-    @DeleteMapping("/delete")
-    public boolean deleteEtudiantFromFiliere(@RequestBody FiliereEtudiantDto filiereEtudiantDto) {
-        return filiereEtudiantService.deleteEtudiantFromFiliere(filiereEtudiantDto);
+    @DeleteMapping("/delete/{filiereId}/{etudiantId}")
+    public boolean deleteEtudiantFromFiliere(@PathVariable Long filiereId, @PathVariable Long etudiantId) {
+        return filiereEtudiantService.deleteEtudiantFromFiliere(filiereId,etudiantId);
     }
 }

@@ -10,4 +10,5 @@ public interface DelegueRepository extends JpaRepository<Delegue, Long> {
     boolean existsByEtudiant_Email(String email);
 
     Delegue findByEtudiant_Email(String email);
+    boolean deleteByEtudiant_IdEtudiant(Long id);
 }

@@ -3,7 +3,6 @@ package com.ExamChrono.services;
 import com.ExamChrono.models.Dtos.FiliereWithModulesDto.FiliereWithModulesDto;
 import com.ExamChrono.models.Dtos.ModulesDto.Modules2Dto;
 import com.ExamChrono.models.Dtos.ModulesDto.ModulesDto;
-import com.ExamChrono.models.Dtos.ModulesFilieredto.ModulesFilieredto;
 import com.ExamChrono.models.Entities.Filiere;
 import com.ExamChrono.models.Entities.Modules;
 import com.ExamChrono.repositories.FiliereRepository;
@@ -70,10 +69,7 @@ public class ModulesServiceImpl implements ModulesService {
     }
 
     @Override
-    public boolean deleteModule(ModulesFilieredto modulesFilieredto) {
-
-        long moduleId = modulesFilieredto.getModuleId();
-        long filiereId = modulesFilieredto.getFiliereId();
+    public boolean deleteModule(Long filiereId, Long moduleId) {
 
         Filiere filiere = this.filiereRepository.findById(filiereId).get();
         Modules module = this.modulesRepository.findById(moduleId).get();

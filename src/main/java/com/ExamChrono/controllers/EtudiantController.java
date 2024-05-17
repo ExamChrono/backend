@@ -36,9 +36,9 @@ public class EtudiantController {
     public boolean createEtudiant(@RequestBody Etudiant etudiant, @PathVariable boolean validation) {
         return etudiantService.createEtudiant(etudiant, validation);
     }
-    @DeleteMapping("/delete")
-    public boolean deleteEtudiant(@RequestBody Etudiant etudiant) {
-        return etudiantService.deleteEtudiant(etudiant);
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteEtudiant(@PathVariable Long id) {
+        return etudiantService.deleteEtudiant(id);
     }
     @PostMapping("/getByEmail")
     public EtudiantDto r(@RequestBody Etudiant etudiant) {

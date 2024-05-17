@@ -36,9 +36,9 @@ public class EnseignantController {
     public boolean createEnseignant(@RequestBody Enseignant enseignant, @PathVariable boolean validation) {
         return enseignantService.createEnseignant(enseignant, validation);
     }
-    @DeleteMapping("/delete")
-    public boolean deleteEnseignant(@RequestBody Enseignant enseignant) {
-        return enseignantService.deleteEnseignant(enseignant);
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteEnseignant(@PathVariable Long id) {
+        return enseignantService.deleteEnseignant(id);
     }
     @PostMapping("/getByEmail")
     public EnseignantDto getEnseignantByEmail(@RequestBody Enseignant enseignant) {

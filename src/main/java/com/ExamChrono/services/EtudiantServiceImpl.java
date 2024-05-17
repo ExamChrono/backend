@@ -59,8 +59,8 @@ public class EtudiantServiceImpl implements EtudiantService {
     }
 
     @Override
-    public boolean deleteEtudiant(Etudiant etudiant) {
-        this.etudiantRepository.delete(etudiant);
+    public boolean deleteEtudiant(Long id) {
+        this.etudiantRepository.deleteById(id);
         return true;
     }
 

@@ -35,8 +35,8 @@ public class SurveilleController {
         return surveilleService.updateSurveille(surveille);
     }
 
-    @DeleteMapping("/delete")
-    public boolean deleteSurveille(@RequestBody Surveille surveille) {
-        return surveilleService.deleteSurveille(surveille);
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteSurveille(@PathVariable Long id) {
+        return surveilleService.deleteSurveille(id);
     }
 }
