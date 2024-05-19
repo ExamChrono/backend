@@ -5,7 +5,6 @@ import com.ExamChrono.models.Dtos.FiliereEtudiantDto.FiliereEtudiantDto;
 import com.ExamChrono.models.Dtos.FiliereWithStudentsDto.FiliereWithStudentsDto;
 import com.ExamChrono.models.Entities.Etudiant;
 import com.ExamChrono.models.Entities.Filiere;
-import com.ExamChrono.models.Enums.RoleUser;
 import com.ExamChrono.repositories.EtudiantRepository;
 import com.ExamChrono.repositories.FiliereRepository;
 import com.ExamChrono.services.interfaces.FiliereEtudiantService;
@@ -32,7 +31,7 @@ public class FiliereEtudiantServiceImpl implements FiliereEtudiantService {
         for (Filiere filiere : filieres) {
             List<EtudiantDto> studentDtos = new ArrayList<>();
             for (Etudiant etudiant : filiere.getEtudiants()) {
-                studentDtos.add(new EtudiantDto(etudiant.getIdEtudiant(), etudiant.getMatricule(), etudiant.getEmail(), etudiant.getNom(), etudiant.getPrenom(), etudiant.getPassword(), etudiant.getValidation(), RoleUser.Etudiant));
+                studentDtos.add(new EtudiantDto(etudiant.getIdEtudiant(), etudiant.getMatricule(), etudiant.getEmail(), etudiant.getNom(), etudiant.getPrenom(), etudiant.getPassword(), etudiant.getValidation(), etudiant.getRoleUser()));
             }
             dtos.add(new FiliereWithStudentsDto(filiere.getId(), filiere.getNom(), filiere.getSpecialite(),
                     filiere.getNiveau(), filiere.getNombreEtudient(), studentDtos));
@@ -47,6 +46,7 @@ public class FiliereEtudiantServiceImpl implements FiliereEtudiantService {
         Long etudiantId = filiereEtudiantDto.getEtudiantId();
 
         Filiere filiere = filiereRepository.findById(filiereId).get();
+        filiere.setNombreEtudient(String.valueOf(Integer.parseInt(filiere.getNombreEtudient()) + 1));
         Etudiant etudiant = etudiantRepository.findById(etudiantId).get();
 
         if (filiere != null && etudiant != null) {
@@ -63,6 +63,7 @@ public class FiliereEtudiantServiceImpl implements FiliereEtudiantService {
     public boolean deleteEtudiantFromFiliere(Long filiereId, Long etudiantId) {
 
         Filiere filiere = filiereRepository.findById(filiereId).get();
+        filiere.setNombreEtudient(String.valueOf(Integer.parseInt(filiere.getNombreEtudient()) - 1));
         Etudiant etudiant = etudiantRepository.findById(etudiantId).get();
 
         if (filiere != null && etudiant != null) {

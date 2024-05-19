@@ -22,21 +22,21 @@ public class PassExamenController {
 
     @GetMapping("/all")
     public List<PassExamenDto> getAllPass () {
-        return passExamenService.getAllPassEsamenEtudiants();
+        return passExamenService.getAllPassExamenEtudiants();
     }
 
     @PostMapping("/add")
     public boolean addPass (@RequestBody PassExamen passExamen) {
-        return passExamenService.addPassEsamen(passExamen);
+        return passExamenService.addPassExamen(passExamen);
     }
 
     @PutMapping("/update")
     public boolean updatePass (@RequestBody PassExamen passExamen) {
-        return passExamenService.updatePassEsamen(passExamen);
+        return passExamenService.updatePassExamen(passExamen);
     }
 
     @DeleteMapping("/delete/{id}")
     public boolean deletePass (@PathVariable Long id) {
-        return passExamenService.deletePassEsamen(id);
+        return passExamenService.deletePassExamen(id);
     }
 }

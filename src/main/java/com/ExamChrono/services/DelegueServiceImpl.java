@@ -60,6 +60,12 @@ public class DelegueServiceImpl implements DelegueService {
 
     @Override
     public boolean deleteDelegue(Long id) {
+        Delegue delegue = this.delegueRepository.findById(id).orElse(null);
+        assert delegue != null;
+        long idEtudiant = delegue.getEtudiant().getIdEtudiant();
+        Etudiant etudiant = this.etudiantRepository.findById(idEtudiant).get();
+        etudiant.setRoleUser(RoleUser.Etudiant);
+        this.etudiantRepository.save(etudiant);
         this.delegueRepository.deleteById(id);
         return true;
     }

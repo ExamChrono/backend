@@ -5,11 +5,9 @@ import com.ExamChrono.models.Dtos.GroupeDto.Groupe3Dto;
 import com.ExamChrono.models.Dtos.SurveilleDto.SurveilleDto;
 import com.ExamChrono.models.Entities.Enseignant;
 import com.ExamChrono.models.Entities.Groupe;
+import com.ExamChrono.models.Entities.Salle;
 import com.ExamChrono.models.Entities.Surveille;
-import com.ExamChrono.repositories.EnseignantRepository;
-import com.ExamChrono.repositories.FiliereRepository;
-import com.ExamChrono.repositories.GroupeRepository;
-import com.ExamChrono.repositories.SurveilleRepository;
+import com.ExamChrono.repositories.*;
 import com.ExamChrono.services.interfaces.SurveilleService;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +19,13 @@ public class SurveilleServiceImpl implements SurveilleService {
     private final SurveilleRepository surveilleRepository;
     private final GroupeRepository groupeRepository;
     private final EnseignantRepository enseignantRepository;
+    private final SalleRepository salleRepository;
 
-    public SurveilleServiceImpl(SurveilleRepository surveilleRepository, GroupeRepository groupeRepository, FiliereRepository filiereRepository, EnseignantRepository enseignantRepository) {
+    public SurveilleServiceImpl(SurveilleRepository surveilleRepository, GroupeRepository groupeRepository, FiliereRepository filiereRepository, EnseignantRepository enseignantRepository, SalleRepository salleRepository) {
         this.surveilleRepository = surveilleRepository;
         this.groupeRepository = groupeRepository;
         this.enseignantRepository = enseignantRepository;
+        this.salleRepository = salleRepository;
     }
 
     @Override
@@ -33,30 +33,7 @@ public class SurveilleServiceImpl implements SurveilleService {
         List<SurveilleDto> surveilleDtos = new ArrayList<>();
         List<Surveille> surveilles = this.surveilleRepository.findAll();
 
-       for (Surveille surveille : surveilles) {
-            Long groupeId = surveille.getGroupeId();
-
-            Groupe groupe = this.groupeRepository.findById(groupeId).get();
-            long nbrEtudiant = groupe.getNbrEtudiant();
-
-            FiliereDto filiereDto = getFiliereDto(groupe);
-
-            Groupe3Dto groupe3Dto = new Groupe3Dto(groupeId, nbrEtudiant, filiereDto);
-
-            Long enseignantId = surveille.getEnseignantId();
-            Enseignant enseignant = this.enseignantRepository.findById(enseignantId).get();
-
-            SurveilleDto surveilleDto = new SurveilleDto();
-            surveilleDto.setId(surveille.getId());
-            surveilleDto.setNom(surveille.getNom());
-            surveilleDto.setCode(surveille.getCode());
-            surveilleDto.setGroupe(groupe3Dto);
-            surveilleDto.setEnseignant(enseignant);
-
-            surveilleDtos.add(surveilleDto);
-        }
-
-        return surveilleDtos;
+        return getSurveilleDtos(surveilleDtos, surveilles);
     }
 
     static FiliereDto getFiliereDto(Groupe groupe) {
@@ -84,7 +61,44 @@ public class SurveilleServiceImpl implements SurveilleService {
 
     @Override
     public boolean deleteSurveille(Long id) {
+        Salle salle = this.salleRepository.findBySurveilleId(id);
+        this.salleRepository.delete(salle);
         this.surveilleRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<SurveilleDto> getAllSurveilleByIdEnseignant(Long idEnseignant) {
+        List<SurveilleDto> surveilleDtos = new ArrayList<>();
+        List<Surveille> surveilles = this.surveilleRepository.findAllByEnseignantId(idEnseignant);
+
+        return getSurveilleDtos(surveilleDtos, surveilles);
+    }
+
+    private List<SurveilleDto> getSurveilleDtos(List<SurveilleDto> surveilleDtos, List<Surveille> surveilles) {
+        for (Surveille surveille : surveilles) {
+            Long groupeId = surveille.getGroupeId();
+
+            Groupe groupe = this.groupeRepository.findById(groupeId).get();
+            long nbrEtudiant = groupe.getNbrEtudiant();
+
+            FiliereDto filiereDto = getFiliereDto(groupe);
+
+            Groupe3Dto groupe3Dto = new Groupe3Dto(groupeId, nbrEtudiant, filiereDto);
+
+            Long enseignantId = surveille.getEnseignantId();
+            Enseignant enseignant = this.enseignantRepository.findById(enseignantId).get();
+
+            SurveilleDto surveilleDto = new SurveilleDto();
+            surveilleDto.setId(surveille.getId());
+            surveilleDto.setNom(surveille.getNom());
+            surveilleDto.setCode(surveille.getCode());
+            surveilleDto.setGroupe(groupe3Dto);
+            surveilleDto.setEnseignant(enseignant);
+
+            surveilleDtos.add(surveilleDto);
+        }
+
+        return surveilleDtos;
     }
 }

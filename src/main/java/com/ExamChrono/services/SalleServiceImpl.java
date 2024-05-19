@@ -63,8 +63,8 @@ public class SalleServiceImpl implements SalleService {
             surveilleDto.setGroupe(groupe3Dto);
             surveilleDto.setEnseignant(enseignant);
 
-            Long passEsamenId = salle.getPassEsamenId();
-            PassExamen passExamen = this.passExamenRepository.findById(passEsamenId).orElse(null);
+            Long PassExamenId = salle.getPassExamenId();
+            PassExamen passExamen = this.passExamenRepository.findById(PassExamenId).orElse(null);
 
             Long moduleId = passExamen.getModuleId();
             Modules module = this.modulesRepository.findById(moduleId).get();
@@ -80,7 +80,7 @@ public class SalleServiceImpl implements SalleService {
             salleDto.setType_salle(salle.getType_salle());
             salleDto.setCapacite(salle.getCapacite());
             salleDto.setSurveille(surveilleDto);
-            salleDto.setPassEsamen(passExamenDto);
+            salleDto.setPassExamen(passExamenDto);
 
             salleDtos.add(salleDto);
         }

@@ -25,6 +25,11 @@ public class SurveilleController {
         return surveilleService.getAllSurveille();
     }
 
+    @GetMapping("/getAllSurveilleByIdEnseignant/{idEnseignant}")
+    public List<SurveilleDto> getAllSurveilleByIdEnseignant(@PathVariable Long idEnseignant) {
+        return surveilleService.getAllSurveilleByIdEnseignant(idEnseignant);
+    }
+
     @PostMapping("/add")
     public boolean addSurveille(@RequestBody Surveille surveille) {
         return surveilleService.addSurveille(surveille);

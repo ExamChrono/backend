@@ -19,6 +19,6 @@ public class Salle {
     private TypeSalle type_salle;
     private Long capacite;
 
-    private Long passEsamenId;
+    private Long passExamenId;
     private Long surveilleId;
 }

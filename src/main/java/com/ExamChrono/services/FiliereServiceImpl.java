@@ -40,12 +40,16 @@ public class FiliereServiceImpl implements FiliereService {
 
     @Override
     public boolean updateFiliere(Filiere filiere) {
+        Filiere oldFiliere = this.filiereRepository.findById(filiere.getId()).get();
+        filiere.setDelegue(oldFiliere.getDelegue());
+        filiere.setNombreEtudient(oldFiliere.getNombreEtudient());
         this.filiereRepository.save(filiere);
         return true;
     }
 
     @Override
     public boolean createFiliere(Filiere filiere) {
+        filiere.setNombreEtudient("0");
         this.filiereRepository.save(filiere);
         Long filiereId = filiere.getId();
         Long delegueId = filiere.getDelegue().getId();
@@ -90,5 +94,14 @@ public class FiliereServiceImpl implements FiliereService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public FiliereDto getFiliereByIdDelegue(Long id) {
+        Filiere filiere = this.filiereRepository.findByDelegue_Id(id);
+        if (filiere != null) {
+            return new FiliereDto(filiere.getId(), filiere.getNom(), filiere.getSpecialite(), filiere.getNiveau(), filiere.getNombreEtudient());
+        }
+        return new FiliereDto();
     }
 }

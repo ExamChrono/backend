@@ -10,4 +10,6 @@ public interface ModulesService {
     boolean addModule(ModulesDto modulesDto);
     boolean updateModule(ModulesDto modulesDto);
     boolean deleteModule(Long filiereId, Long moduleId);
+
+    FiliereWithModulesDto getModule(Long idDelegue);
 }

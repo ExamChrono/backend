@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ModulesServiceImpl implements ModulesService {
+public class ModulesServiceImpl implements ModulesService{
     private final ModulesRepository modulesRepository;
     private final FiliereRepository filiereRepository;
 
@@ -82,5 +82,16 @@ public class ModulesServiceImpl implements ModulesService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public FiliereWithModulesDto getModule(Long idDelegue) {
+        Filiere filiere = this.filiereRepository.findByDelegue_Id(idDelegue);
+
+        List<Modules2Dto> modulesDtos = new ArrayList<>();
+        for (Modules module : filiere.getModules()) {
+            modulesDtos.add(new Modules2Dto(module.getId(), module.getNom(), module.getSemester(), module.getOrder()));
+        }
+        return new FiliereWithModulesDto(filiere.getId(), filiere.getNom(), filiere.getSpecialite(), filiere.getNiveau(), filiere.getNombreEtudient(), modulesDtos);
     }
 }

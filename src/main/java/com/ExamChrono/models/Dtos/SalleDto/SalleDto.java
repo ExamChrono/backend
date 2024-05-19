@@ -14,6 +14,6 @@ public class SalleDto {
     private TypeSalle type_salle;
     private Long capacite;
 
-    private PassExamenDto passEsamen;
+    private PassExamenDto passExamen;
     private SurveilleDto surveille;
 }

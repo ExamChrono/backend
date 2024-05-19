@@ -25,7 +25,7 @@ public class PassExamenServiceImpl implements PassExamenService {
     }
 
     @Override
-    public List<PassExamenDto> getAllPassEsamenEtudiants() {
+    public List<PassExamenDto> getAllPassExamenEtudiants() {
         List<PassExamen> passExamens = this.passExamenRepository.findAll();
         List<PassExamenDto> dtos = new ArrayList<>();
 
@@ -44,19 +44,19 @@ public class PassExamenServiceImpl implements PassExamenService {
 
 
     @Override
-    public boolean addPassEsamen(PassExamen passExamen) {
+    public boolean addPassExamen(PassExamen passExamen) {
         this.passExamenRepository.save(passExamen);
         return true;
     }
 
     @Override
-    public boolean updatePassEsamen(PassExamen passExamen) {
+    public boolean updatePassExamen(PassExamen passExamen) {
         this.passExamenRepository.save(passExamen);
         return true;
     }
 
     @Override
-    public boolean deletePassEsamen(Long id) {
+    public boolean deletePassExamen(Long id) {
         this.passExamenRepository.deleteById(id);
         return true;
     }

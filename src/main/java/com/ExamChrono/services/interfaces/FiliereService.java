@@ -11,4 +11,6 @@ public interface FiliereService {
     boolean createFiliere(Filiere filiere);
     boolean deleteFiliere(Long id
     );
+
+    FiliereDto getFiliereByIdDelegue(Long id);
 }

@@ -14,5 +14,5 @@ public class PassExamenEtudiant {
     private Long id;
 
     private Long etudiantsId;
-    private Long passEsamenId;
+    private Long passExamenId;
 }

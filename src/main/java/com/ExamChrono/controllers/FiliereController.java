@@ -39,4 +39,8 @@ public class FiliereController {
     public boolean deleteFiliere(@PathVariable Long id) {
         return filiereService.deleteFiliere(id);
     }
+    @GetMapping("/getFiliereByIdDelegue/{id}")
+    public FiliereDto getFiliereByIdDelegue(@PathVariable Long id) {
+        return filiereService.getFiliereByIdDelegue(id);
+    }
 }
